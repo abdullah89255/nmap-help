@@ -1,5 +1,5 @@
 
-# 🔥 Nmap Usage – 50 Examples with Details
+# 🔥 Nmap Usage Examples with Details
 
 General syntax:
 
