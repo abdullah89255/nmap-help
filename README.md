@@ -10,7 +10,17 @@ nmap [options] <target>
 ---
 
 ## 🎯 1–10: Basic Scans
+Detect WAF
+ ```bash
+  nmap -p80,443 --script http-waf-detect bmo.com
+   ```
+Fingerprint WAF
+ ```bash
+ nmap -p80,443 --script http-waf-fingerprint bmo.com
 
+   ```
+
+---
 1. **Scan a single host**
 
    ```bash
