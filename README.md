@@ -348,9 +348,329 @@ nmap --packet-trace 192.168.1.1
 ```bash
 nmap --reason 192.168.1.1
 ```
+## 🚀 51–60: Performance & Timing
+
+51. **Increase speed (aggressive timing)**
+
+```bash
+nmap -T4 192.168.1.1
+```
+
+52. **Max speed (not stealthy)**
+
+```bash
+nmap -T5 192.168.1.1
+```
+
+53. **Slow timing (stealthy)**
+
+```bash
+nmap -T1 192.168.1.1
+```
+
+54. **Custom max retries**
+
+```bash
+nmap --max-retries 2 192.168.1.1
+```
+
+55. **Custom host timeout**
+
+```bash
+nmap --host-timeout 30s 192.168.1.1
+```
+
+56. **Parallelism (max probes)**
+
+```bash
+nmap --max-parallelism 10 192.168.1.1
+```
+
+57. **Custom scan delay**
+
+```bash
+nmap --scan-delay 500ms 192.168.1.1
+```
+
+58. **Random scan order**
+
+```bash
+nmap --randomize-hosts 192.168.1.0/24
+```
+
+59. **Fragment packets (evade IDS)**
+
+```bash
+nmap -f 192.168.1.1
+```
+
+60. **Send decoy traffic**
+
+```bash
+nmap -D RND:5 192.168.1.1
+```
+
+➡ Sends 5 random decoys to mask your IP.
+
+---
+
+## 🕵️ 61–70: Firewall / IDS Evasion
+
+61. **Source port trick (FTP 20)**
+
+```bash
+nmap --source-port 20 192.168.1.1
+```
+
+62. **Append custom data payload**
+
+```bash
+nmap --data-length 50 192.168.1.1
+```
+
+63. **Send bogus TCP options**
+
+```bash
+nmap --ip-options "R" 192.168.1.1
+```
+
+64. **Bad checksum packets**
+
+```bash
+nmap --badsum 192.168.1.1
+```
+
+65. **Scan through proxy (SOCKS4)**
+
+```bash
+nmap --proxies socks4://127.0.0.1:9050 192.168.1.1
+```
+
+66. **MAC address spoofing**
+
+```bash
+nmap --spoof-mac 0 192.168.1.1
+```
+
+67. **Custom TTL**
+
+```bash
+nmap --ttl 50 192.168.1.1
+```
+
+68. **Send IP packets only**
+
+```bash
+nmap -sP --send-ip 192.168.1.0/24
+```
+
+69. **Force no DNS resolution**
+
+```bash
+nmap -n 192.168.1.1
+```
+
+70. **Custom MTU**
+
+```bash
+nmap --mtu 32 192.168.1.1
+```
+
+---
+
+## 🔍 71–80: NSE (Nmap Scripting Engine)
+
+71. **SSL certificate info**
+
+```bash
+nmap --script ssl-cert -p 443 example.com
+```
+
+72. **SSL weak ciphers**
+
+```bash
+nmap --script ssl-enum-ciphers -p 443 example.com
+```
+
+73. **Find HTTP titles**
+
+```bash
+nmap --script http-title -p 80,443 example.com
+```
+
+74. **Check for WAF**
+
+```bash
+nmap --script http-waf-detect -p80,443 example.com
+```
+
+75. **Fingerprint WAF**
+
+```bash
+nmap --script http-waf-fingerprint -p80,443 example.com
+```
+
+76. **WordPress detection**
+
+```bash
+nmap --script http-wordpress-enum -p80 example.com
+```
+
+77. **MySQL enumeration**
+
+```bash
+nmap --script mysql-info -p3306 192.168.1.1
+```
+
+78. **DNS brute force**
+
+```bash
+nmap --script dns-brute example.com
+```
+
+79. **SMB OS discovery**
+
+```bash
+nmap --script smb-os-discovery -p445 192.168.1.1
+```
+
+80. **Vulnerability check**
+
+```bash
+nmap --script vuln 192.168.1.1
+```
+
+---
+
+## 🖥️ 81–90: Web & Service Scanning
+
+81. **HTTP methods allowed**
+
+```bash
+nmap --script http-methods -p80 example.com
+```
+
+82. **HTTP headers**
+
+```bash
+nmap --script http-headers -p80 example.com
+```
+
+83. **Check HTTP robots.txt**
+
+```bash
+nmap --script http-robots.txt -p80 example.com
+```
+
+84. **Detect open proxy**
+
+```bash
+nmap --script http-open-proxy -p8080 example.com
+```
+
+85. **FTP anonymous login**
+
+```bash
+nmap --script ftp-anon -p21 192.168.1.1
+```
+
+86. **SSH version**
+
+```bash
+nmap -sV -p22 192.168.1.1
+```
+
+87. **SNMP info**
+
+```bash
+nmap -sU -p161 --script snmp-info 192.168.1.1
+```
+
+88. **NTP monlist (reflection attack check)**
+
+```bash
+nmap -sU -p123 --script ntp-monlist 192.168.1.1
+```
+
+89. **Check for open MongoDB**
+
+```bash
+nmap -p27017 --script mongodb-info 192.168.1.1
+```
+
+90. **Check Redis service**
+
+```bash
+nmap -p6379 --script redis-info 192.168.1.1
+```
+
+---
+
+## 📂 91–100: Reporting & Misc
+
+91. **Scan and output grepable results**
+
+```bash
+nmap -oG scan.gnmap 192.168.1.0/24
+```
+
+92. **Save XML + import into other tools**
+
+```bash
+nmap -oX scan.xml 192.168.1.0/24
+```
+
+93. **Convert XML to HTML report**
+
+```bash
+xsltproc scan.xml -o report.html
+```
+
+94. **Combine outputs**
+
+```bash
+nmap -oA fullscan 192.168.1.1
+```
+
+95. **Verbose traceroute scan**
+
+```bash
+nmap -A --traceroute 192.168.1.1
+```
+
+96. **Check for specific vulnerability (Heartbleed)**
+
+```bash
+nmap --script ssl-heartbleed -p443 example.com
+```
+
+97. **Save only open ports**
+
+```bash
+nmap --open 192.168.1.1
+```
+
+98. **Use input file with list of hosts**
+
+```bash
+nmap -iL hosts.txt
+```
+
+99. **Generate random targets**
+
+```bash
+nmap -iR 10
+```
+
+100. **Check firewall rules (ACK scan)**
+
+```bash
+nmap -sA 192.168.1.1
+```
 
 ---
 
 
 
-👉 Do you want me to also create a **printable PDF cheat sheet (Command | Description)** for both **Nmap (50)** and **Dirsearch (50)** so you can keep them handy in Kali?
+
+
